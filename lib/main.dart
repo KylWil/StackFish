@@ -63,7 +63,23 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: [
                   const SizedBox(height: 60),
                   FloatingActionButton(
-                    onPressed: null,
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return Dialog(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                            child: SizedBox(
+                              width: 286,
+                              height: 600,
+                              child: InfoWindow(title: "Information")
+                            ),
+                          );
+                        }
+                      );
+                    },
                     tooltip: 'Info',
                     child: const Icon(Icons.info_outline),
                   ),
@@ -165,6 +181,59 @@ class _ThemeWindowState extends State<ThemeWindow> {
             tooltip: color.toString(),
           );
         }).toList(),
+      ),
+    );
+  }
+}
+
+class InfoWindow extends StatefulWidget {
+  const InfoWindow({super.key, required this.title});
+  final String title;
+
+  @override
+  State<InfoWindow> createState() => _InfoWindowState();
+}
+
+class _InfoWindowState extends State<InfoWindow> {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(16.0),
+      child: Container(
+        padding: EdgeInsets.all(12.0),
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.grey),
+          borderRadius: BorderRadius.circular(8),
+          color: Colors.white, // optional background
+        ),
+        child: SingleChildScrollView(
+          child: RichText(
+            text: TextSpan(
+              style: TextStyle(
+                fontSize: 14,
+                height: 1.5,
+                color: Colors.black, // must set color for TextSpan
+              ),
+              children: [
+                TextSpan(
+                  text: 'Disclaimer\n\n',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
+                ),
+                TextSpan(
+                  text:
+                  'This application is provided free of charge and will always remain free to use. '
+                      'The source code is open and licensed under the MIT License, allowing anyone to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the software. '
+                      'You are free to fork, adapt, and use the application for any purpose, including personal, educational, or commercial use. '
+                      'This software is provided "as is," without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose, and noninfringement. '
+                      'In no event shall the authors or copyright holders be liable for any claim, damages, or other liability, whether in an action of contract, tort, or otherwise, arising from, out of, or in connection with the software or the use or other dealings in the software.',
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
