@@ -13,7 +13,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   ThemeData _themeData = ThemeData(
-    colorScheme: ColorScheme.fromSeed(seedColor: Colors.greenAccent),
+    colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
   );
 
   void _setTheme(Color seedColor) {
@@ -27,10 +27,10 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'StackFish',
       theme: _themeData,
       home: MyHomePage(
-        title: 'Flutter Demo Home Page',
+        title: 'StackFish Home Page',
         onThemeChanged: _setTheme,
       ),
     );
@@ -64,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   const SizedBox(height: 60),
                   FloatingActionButton(
                     onPressed: null,
-                    tooltip: 'Set Theme',
+                    tooltip: 'Info',
                     child: const Icon(Icons.info_outline),
                   ),
                   const SizedBox(height: 10),
@@ -134,77 +134,38 @@ class ThemeWindow extends StatefulWidget {
 }
 
 class _ThemeWindowState extends State<ThemeWindow> {
+  final List<Color> themeColors = [
+    Colors.red,
+    Colors.deepOrange,
+    Colors.orange,
+    Colors.orangeAccent,
+    Colors.yellow,
+    Colors.lightGreen,
+    Colors.green,
+    Colors.teal,
+    Colors.blue,
+    Colors.deepPurple,
+    Colors.purple,
+    Colors.purpleAccent,
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Wrap (
-                spacing: 10,
-                runSpacing: 10,
-                children: [
-                  FloatingActionButton(
-                    onPressed: () => widget.onThemeChanged(Colors.red),
-                    tooltip: 'Test',
-                    backgroundColor: Colors.red,
-                  ),
-                  FloatingActionButton(
-                    onPressed: () => widget.onThemeChanged(Colors.deepOrange),
-                    tooltip: 'Test',
-                    backgroundColor: Colors.deepOrange,
-                  ),
-                  FloatingActionButton(
-                    onPressed: () => widget.onThemeChanged(Colors.orange),
-                    tooltip: 'Test',
-                    backgroundColor: Colors.orange,
-                  ),
-                  FloatingActionButton(
-                    onPressed: () => widget.onThemeChanged(Colors.orangeAccent),
-                    tooltip: 'Test',
-                    backgroundColor: Colors.orangeAccent,
-                  ),
-                  FloatingActionButton(
-                    onPressed: () => widget.onThemeChanged(Colors.yellow),
-                    tooltip: 'Test',
-                    backgroundColor: Colors.yellow,
-                  ),
-                  FloatingActionButton(
-                    onPressed: () => widget.onThemeChanged(Colors.lightGreen),
-                    tooltip: 'Test',
-                    backgroundColor: Colors.lightGreen,
-                  ),
-                  FloatingActionButton(
-                    onPressed: () => widget.onThemeChanged(Colors.green),
-                    tooltip: 'Test',
-                    backgroundColor: Colors.green,
-                  ),
-                  FloatingActionButton(
-                    onPressed: () => widget.onThemeChanged(Colors.teal),
-                    tooltip: 'Test',
-                    backgroundColor: Colors.teal,
-                  ),
-                  FloatingActionButton(
-                    onPressed: () => widget.onThemeChanged(Colors.blue),
-                    tooltip: 'Test',
-                    backgroundColor: Colors.blue,
-                  ),
-                  FloatingActionButton(
-                    onPressed: () => widget.onThemeChanged(Colors.deepPurple),
-                    tooltip: 'Test',
-                    backgroundColor: Colors.deepPurple,
-                  ),
-                  FloatingActionButton(
-                    onPressed: () => widget.onThemeChanged(Colors.purple),
-                    tooltip: 'Test',
-                    backgroundColor: Colors.purple,
-                  ),
-                  FloatingActionButton(
-                    onPressed: () => widget.onThemeChanged(Colors.purpleAccent),
-                    tooltip: 'Test',
-                    backgroundColor: Colors.purpleAccent,
-                  ),
-                ],
-              ),
-            );
-
+      padding: EdgeInsets.all(16.0),
+      child: Wrap(
+        spacing: 10,
+        runSpacing: 10,
+        children: themeColors.map((color) {
+          return FloatingActionButton(
+            onPressed: () {
+              widget.onThemeChanged(color);
+            },
+            backgroundColor: color,
+            tooltip: color.toString(),
+          );
+        }).toList(),
+      ),
+    );
   }
 }
