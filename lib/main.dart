@@ -124,7 +124,23 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     const SizedBox(height: 10),
                     FloatingActionButton(
-                        onPressed: null,
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return Dialog(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(16),
+                                ),
+                                child: SizedBox(
+                                  width: 286,
+                                  height: 160,
+                                  child: ResetWindow(title: "Reset Stack"),
+                                ),
+                              );
+                            },
+                          );
+                        },
                         tooltip: 'Reset Stack',
                         child: const Icon(Icons.autorenew)
                     ),
@@ -234,6 +250,80 @@ class _InfoWindowState extends State<InfoWindow> {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class ResetWindow extends StatefulWidget {
+  const ResetWindow({super.key, required this.title});
+  final String title;
+
+  @override
+  State<ResetWindow> createState() => _ResetWindowState();
+}
+
+class _ResetWindowState extends State<ResetWindow> {
+  @override
+  Widget build(BuildContext build) {
+    return Padding(
+      padding: EdgeInsets.all(20.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              RichText(
+                text: TextSpan(
+                  text: "Reset Stack?",
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                )
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              FloatingActionButton.extended(
+                onPressed: null,
+                tooltip: 'Yes',
+                icon: const Icon(Icons.check),
+                label: RichText(
+                  text: TextSpan(
+                    text: "Yes",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    )
+                  )
+                ),
+              ),
+              FloatingActionButton.extended(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                tooltip: 'No',
+                icon: const Icon(Icons.close),
+                label: RichText(
+                    text: TextSpan(
+                        text: "No",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        )
+                    )
+                ),
+              ),
+            ]
+          ),
+        ],
       ),
     );
   }
