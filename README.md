@@ -4,9 +4,9 @@ StackFish is a mobile app built to create stacks with custom descriptions and vi
 
 ## Features
 
--Stacking tiles with customizable descriptions and icons \\
--On the fly state resetting and tile addition/removal \\
--Saved state between uses of the app \\
+-Stacking tiles with customizable descriptions and icons  
+-On the fly state resetting and tile addition/removal  
+-Saved state between uses of the app  
 
 ## Build Environment
 
