@@ -1,4 +1,4 @@
-# stack_fish
+# StackFish
 
 A new Flutter project.
 
